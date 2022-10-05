@@ -6,6 +6,7 @@ const app = express();
 const indexRouter = require("./routes/index");
 const accountRouter = require("./routes/account");
 const symptomsRouter = require("./routes/symptoms");
+const medicinesRouter = require("./routes/medicines");
 
 //cors
 const cors = require("cors");
@@ -18,5 +19,6 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/account", accountRouter);
 app.use("/symptoms", symptomsRouter);
+app.use("/medicines", medicinesRouter);
 
 app.listen(3000, () => console.log("YS-SWDH-Hackathon-2022!"));
