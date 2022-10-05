@@ -33,7 +33,7 @@ const ItemGridModal = ({ show, onClose, props }) => {
         <Modal.Body style={{ marginTop: "-1rem", paddingTop: "1rem" }}>
           <div className="item-grid">
             {data.map((data) => (
-              <ItemCard key={data.id} size="lg" data={data} onClick={() => handler(modals.itemListModal, data.data)} />
+              <ItemCard key={data.id} size="lg" data={data} onClick={() => handler(modals.itemListModal, data)} />
             ))}
           </div>
         </Modal.Body>

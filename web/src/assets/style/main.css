@@ -27,6 +27,16 @@ body {
   -webkit-appearance: none;
 }
 
+.header-section {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .status-section {
   width: calc(100% - 2rem);
   margin: 0 1rem;
@@ -90,17 +100,28 @@ body {
   box-shadow: none;
 }
 
-.card-status i {
-  font-size: 3rem;
-  color: RoyalBlue;
-}
-
 .card-status .status-data {
   height: 100%;
-  margin-left: 2rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+.status-available {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.status-available i {
+  margin-top: auto;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+.status-available h4 {
+  margin-bottom: 0 !important;
 }
 
 .card p {
