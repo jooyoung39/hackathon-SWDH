@@ -1,0 +1,27 @@
+.dialog {
+  height: 100%;
+}
+
+.modal-dialog,
+.modal-content {
+  /* 80% of window height */
+  height: 80%;
+}
+
+.modal-login .modal-dialog,
+.modal-login .modal-content {
+  height: 45%;
+}
+
+.modal-login form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-body {
+  /* 100% = dialog height, 120px = header + footer */
+  max-height: 100%;
+  overflow-y: scroll;
+}

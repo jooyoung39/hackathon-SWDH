@@ -1,0 +1,202 @@
+html,
+body {
+  height: 100%;
+  max-width: 100%;
+  width: 100%;
+  background-color: #e6e6e6 !important;
+  overflow-x: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.main {
+  height: calc(100%);
+  padding-top: 1rem;
+  overflow-y: auto;
+}
+
+.warp-horizontal {
+  overflow: auto;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.wrap-horizontal::-webkit-scrollbar {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.status-section {
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.item-section {
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  padding-bottom: 1.25rem;
+  margin: 0 1rem;
+  margin-bottom: 1rem;
+  border-radius: 25px;
+  background: #f3f3f3;
+}
+
+.card-container-sm {
+  width: calc(100% + 2rem);
+  height: calc(8rem + 1rem);
+  margin: -1rem;
+  padding: 1rem;
+  position: relative;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.card-container-md {
+  width: calc(100% + 2rem);
+  height: calc(10rem + 1rem);
+  margin: -1rem;
+  padding: 1rem;
+  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.card-container-lg {
+  width: calc(100% + 2rem);
+  height: calc(12rem + 1rem);
+  margin: -1rem;
+  padding: 1rem;
+  position: relative;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.card {
+  height: 100% !important;
+  margin-right: 1rem;
+  border: none !important;
+  display: inline-block !important;
+  border-radius: 25px !important;
+  background: #f3f3f3 !important;
+  box-shadow: 0.5rem 0.5rem 1rem #e9e9e9, -0.5rem -0.5rem 1rem #fdfdfd;
+}
+
+.card-status {
+  width: 100%;
+  margin-right: 0;
+  background: #f3f3f3 !important;
+  box-shadow: none;
+}
+
+.card-status i {
+  font-size: 3rem;
+  color: RoyalBlue;
+}
+
+.card-status .status-data {
+  height: 100%;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card p {
+  width: 100%;
+  word-break: keep-all;
+  white-space: normal;
+  margin-bottom: 0;
+}
+
+.card .card-body {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/** Card SM **/
+
+.card-sm {
+  width: 5.5rem;
+}
+
+.card-sm .card-body {
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-sm i {
+  font-size: 1.5rem;
+}
+
+.card-sm p {
+  text-align: center;
+}
+/** Card MD **/
+.card-md {
+  width: 7rem;
+}
+
+.card-md .card-body {
+  flex-direction: column-reverse;
+}
+
+.card-md p {
+  font-family: "Pretendard-SemiBold";
+  text-align: left;
+}
+
+.card-md i {
+  font-size: 1.75rem;
+  align-self: flex-end;
+}
+
+/** Card LG **/
+
+.card-lg {
+  width: 100%;
+  height: 9rem !important;
+  margin-right: 0;
+}
+
+.card-lg .card-body {
+  flex-direction: column;
+}
+
+.card-lg p {
+  font-family: "Pretendard-SemiBold";
+  font-size: 1.25rem;
+  text-align: right;
+}
+
+.card-lg i {
+  font-size: 2.5rem;
+}
+
+/** Card Long **/
+
+.card-long {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.card-long i {
+  margin-right: 1rem;
+}
+
+.modal-content {
+  background-color: #f3f3f3 !important;
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+
+.item-list {
+  display: block;
+}
