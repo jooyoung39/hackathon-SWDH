@@ -49,7 +49,7 @@ const Main = () => {
         </h1>
       </section>
       <section className="status-section">
-        <div className="card-container-lg">
+        <div className="card-container-md">
           <div className="card card-status">
             <div className="card-body d-flex align-items-center">
               <i className="fa-solid fa-user-doctor-hair" />
