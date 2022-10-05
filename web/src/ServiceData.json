@@ -1,0 +1,27 @@
+{
+  "services": [
+    {
+      "id": 0,
+      "name": "건강공제회",
+      "icon": "fa-hand-holding-medical",
+      "iconColor": "black",
+      "data": {
+        "registered": true
+      }
+    },
+    {
+      "id": 1,
+      "name": "내 근처 약국",
+      "icon": "fa-hospital-user",
+      "iconColor": "black",
+      "data": "https://m.map.naver.com/search2/search.naver?query=약국&sm=hty&style=v5#/map/1"
+    },
+    {
+      "id": 2,
+      "name": "내 근처 편의점",
+      "icon": "fa-store",
+      "iconColor": "black",
+      "data": "https://m.map.naver.com/search2/search.naver?query=편의점&sm=hty&style=v5#/map/1"
+    }
+  ]
+}

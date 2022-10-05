@@ -1,0 +1,39 @@
+{
+  "symptoms": [
+    {
+      "id": 0,
+      "name": "기침",
+      "icon": "fa-head-side-cough",
+      "iconColor": "CornflowerBlue",
+      "type": ["cold"]
+    },
+    {
+      "id": 1,
+      "name": "두통",
+      "icon": "fa-head-side-brain",
+      "iconColor": "SandyBrown",
+      "type": ["fever-remedy", "anti-inflammatory"]
+    },
+    {
+      "id": 2,
+      "name": "소화불량",
+      "icon": "fa-stomach",
+      "iconColor": "YellowGreen",
+      "type": ["digestive"]
+    },
+    {
+      "id": 3,
+      "name": "고열",
+      "icon": "fa-thermometer",
+      "iconColor": "tomato",
+      "type": ["fever-remedy"]
+    },
+    {
+      "id": 4,
+      "name": "근육통",
+      "icon": "fa-person-dots-from-line",
+      "iconColor": "Maroon",
+      "type": ["patch"]
+    }
+  ]
+}
