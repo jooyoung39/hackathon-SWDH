@@ -6,6 +6,39 @@ const router = express.Router();
 const dbModule = require("../db");
 const pool = dbModule.init();
 
+router.post("/", (req, res) => {
+  const id = req.query.id;
+  const name = req.query.name;
+  const type = req.query.type;
+  const ingredient = req.query.ingredient;
+  const effect = req.query.effect;
+  const dosage = req.query.dosage;
+  dbModule.open(pool, (con) => {
+    con.query(
+      "INSERT INTO medicines (id, name, type, ingredient, effect, dosage) VALUES (?, ?, ?, ?, ?, ?)",
+      [id, name, type, ingredient, effect, dosage],
+      function (err, result) {
+        if (err) {
+          console.log("DB communication failed: ", err);
+          res.status(500).json({ message: "DB communication failed" });
+        } else {
+          res.json({
+            ok: true,
+            medicine: {
+              id: id,
+              name: name,
+              type: type,
+              ingredient: ingredient,
+              effect: effect,
+              dosage: dosage,
+            },
+          });
+        }
+      }
+    );
+  });
+});
+
 router.get("/", (req, res) => {
   dbModule.open(pool, (con) => {
     con.query("SELECT * FROM medicines", function (err, result) {
@@ -19,9 +52,11 @@ router.get("/", (req, res) => {
           ok: true,
           medicines: result.map((medicine) => ({
             id: medicine.id,
-            type: medicine.type,
             name: medicine.name,
-            icon: medicine.icon,
+            type: medicine.type,
+            ingredient: medicine.ingredient,
+            effect: medicine.effect,
+            dosage: medicine.dosage,
           })),
         });
       }
