@@ -32,7 +32,7 @@ router.get("/", (req, res) => {
           } else {
             res.json({
               ok: true,
-              api: {
+              account: {
                 id: result[0].id,
                 name: result[0].name,
                 is_healthcare: result[0].is_healthcare,
