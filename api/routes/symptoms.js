@@ -17,15 +17,13 @@ router.get("/", (req, res) => {
       } else {
         res.json({
           ok: true,
-          symptoms: [
-            result.map((symptom) => ({
-              id: symptom.id,
-              name: symptom.name,
-              icon: symptom.icon,
-              iconColor: symptom.iconColor,
-              type: JSON.parse(symptom.type),
-            })),
-          ],
+          symptoms: result.map((symptom) => ({
+            id: symptom.id,
+            name: symptom.name,
+            icon: symptom.icon,
+            iconColor: symptom.iconColor,
+            type: JSON.parse(symptom.type),
+          })),
         });
       }
     });
