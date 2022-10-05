@@ -6,6 +6,14 @@ const app = express();
 const indexRouter = require("./routes/index");
 const accountRouter = require("./routes/account");
 
+//cors
+const cors = require("cors");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(cors());
+
 app.use("/", indexRouter);
 app.use("/account", accountRouter);
 
