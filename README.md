@@ -35,7 +35,9 @@ npm install
 ### Building
 
 ```shell
-npm build
+npm run build
+npm install -g serve // to run static web server
+serve -s build
 ```
 
 ## Style guide
@@ -63,11 +65,27 @@ web
 │   │   ├── js
 │   │   └── style
 │   ├── components
+│   ├── contexts
+│   ├── hooks
 │   ├── pages
+│   ├── providers
+│   ├── reducers
+│   ├── store
 │   └── index.js
 ├── .gitignore
 ├── package-lock.json
 └── package.json
+api
+├── node_modules
+├── routes
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── manifest.json
+│   └── robots.txt
+├── app.js
+├── db.js
+├── package-lock.json
+├── package.json
 README.md
 
 ```
