@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useInterval } from "react-use";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
@@ -12,10 +12,14 @@ const HeaderSection = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [realTime, setRealTime] = useState(dayjs());
 
+  useEffect(() => {
+    setIsOpen(9 * 60 <= realTime.get("h") * 60 + realTime.get("m") && realTime.get("h") * 60 + realTime.get("m") <= 17 * 60 + 20);
+  }, []);
+
   useInterval(() => {
     setRealTime(dayjs());
     setIsOpen(9 * 60 <= realTime.get("h") * 60 + realTime.get("m") && realTime.get("h") * 60 + realTime.get("m") <= 17 * 60 + 20);
-  }, 5000);
+  }, 10000);
 
   return (
     <section className="status-section">

@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAxios } from "../hooks/useAxios";
+
 import Modal from "react-bootstrap/Modal";
 import Card from "react-bootstrap/Card";
 import CloseButton from "react-bootstrap/CloseButton";
@@ -6,15 +8,19 @@ import Collapse from "react-bootstrap/Collapse";
 
 import MedicineCard from "./medicineCard";
 
-import MedicineData from "../MedicineData.json";
-
 import "../assets/style/modal.css";
-
-const medicineData = MedicineData.medicines;
 
 const ItemListModal = ({ show, onClose, props }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [open, setOpen] = useState(-1);
+  const [medicineData, setMedicineData] = useState([]);
+
+  useEffect(() => {
+    useAxios.get("medicines").then((res) => {
+      setMedicineData(res.data.medicines);
+    });
+  }, []);
+
   return (
     <Modal
       show={isOpen && show}
