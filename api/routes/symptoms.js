@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
               name: symptom.name,
               icon: symptom.icon,
               iconColor: symptom.iconColor,
-              type: symptom.type.replaceAll("\\\\", ""),
+              type: JSON.parse(symptom.type),
             })),
           ],
         });
