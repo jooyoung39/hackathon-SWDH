@@ -4,6 +4,7 @@ import { ModalsDispatchContext, ModalsStateContext } from "../contexts/ModalsCon
 import LoginModal from "./LoginModal";
 import ItemGridModal from "./ItemGridModal";
 import ItemListModal from "./ItemListModal";
+import MedicineModal from "./MedicineModal";
 import HealthCareModal from "./HealthCareModal";
 
 export const modals = {
@@ -11,6 +12,7 @@ export const modals = {
   itemGridModal: ItemGridModal,
   itemListModal: ItemListModal,
   healthCareModal: HealthCareModal,
+  medicineModal: MedicineModal,
 };
 
 const Modals = () => {
