@@ -9,14 +9,15 @@ const pool = dbModule.init();
 router.post("/", (req, res) => {
   const id = req.query.id;
   const name = req.query.name;
+  const icon = req.query.icon;
   const type = req.query.type;
   const ingredient = req.query.ingredient;
   const effect = req.query.effect;
   const dosage = req.query.dosage;
   dbModule.open(pool, (con) => {
     con.query(
-      "INSERT INTO medicines (id, name, quantity, type, ingredient, effect, dosage) VALUES (?, ?, ?, ?, ?, ?, ?)",
-      [id, name, 0, type, ingredient, effect, dosage],
+      "INSERT INTO medicines (id, name, quantity, icon, type, ingredient, effect, dosage) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [id, name, 0, icon, type, ingredient, effect, dosage],
       function (err, result) {
         if (err) {
           console.log("DB communication failed: ", err);
@@ -27,6 +28,7 @@ router.post("/", (req, res) => {
             medicine: {
               id: id,
               name: name,
+              quantity: 0,
               type: type,
               ingredient: ingredient,
               effect: effect,
@@ -54,6 +56,7 @@ router.get("/", (req, res) => {
             id: medicine.id,
             name: medicine.name,
             quantity: medicine.quantity,
+            icon: medicine.icon,
             type: medicine.type,
             ingredient: medicine.ingredient,
             effect: medicine.effect,
