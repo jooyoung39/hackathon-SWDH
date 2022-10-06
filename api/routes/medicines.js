@@ -6,6 +6,33 @@ const router = express.Router();
 const dbModule = require("../db");
 const pool = dbModule.init();
 
+router.get("/", (req, res) => {
+  dbModule.open(pool, (con) => {
+    con.query("SELECT * FROM medicines", function (err, result) {
+      if (err) {
+        console.log("DB communication failed: ", err);
+        res.status(500).json({ message: "DB communication failed" });
+      } else if (!result.length) {
+        res.status(204).json({ message: "No medicine found" });
+      } else {
+        res.json({
+          ok: true,
+          medicines: result.map((medicine) => ({
+            id: medicine.id,
+            name: medicine.name,
+            quantity: medicine.quantity,
+            icon: medicine.icon,
+            type: medicine.type,
+            ingredient: medicine.ingredient,
+            effect: medicine.effect,
+            dosage: medicine.dosage,
+          })),
+        });
+      }
+    });
+  });
+});
+
 router.post("/", (req, res) => {
   const id = req.query.id;
   const name = req.query.name;
@@ -14,6 +41,7 @@ router.post("/", (req, res) => {
   const ingredient = req.query.ingredient;
   const effect = req.query.effect;
   const dosage = req.query.dosage;
+
   dbModule.open(pool, (con) => {
     con.query(
       "INSERT INTO medicines (id, name, quantity, icon, type, ingredient, effect, dosage) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -41,27 +69,22 @@ router.post("/", (req, res) => {
   });
 });
 
-router.get("/", (req, res) => {
+router.put("/", (req, res) => {
+  const id = req.query.id;
+  const quantity = req.query.quantity;
+
   dbModule.open(pool, (con) => {
-    con.query("SELECT * FROM medicines", function (err, result) {
+    con.query("UPDATE medicines SET quantity=? WHERE id=?", [quantity, id], (err, result) => {
       if (err) {
         console.log("DB communication failed: ", err);
         res.status(500).json({ message: "DB communication failed" });
-      } else if (!result.length) {
-        res.status(204).json({ message: "No medicine found" });
       } else {
         res.json({
           ok: true,
-          medicines: result.map((medicine) => ({
-            id: medicine.id,
-            name: medicine.name,
-            quantity: medicine.quantity,
-            icon: medicine.icon,
-            type: medicine.type,
-            ingredient: medicine.ingredient,
-            effect: medicine.effect,
-            dosage: medicine.dosage,
-          })),
+          medicine: {
+            id: id,
+            quantity: quantity,
+          },
         });
       }
     });
@@ -91,4 +114,5 @@ router.get("/types", (req, res) => {
     });
   });
 });
+
 module.exports = router;
