@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Modals, { modals } from "../components/Modals";
+import { modals } from "../components/Modals";
 import useModals from "../hooks/useModal";
 
 import { useAxios } from "../hooks/useAxios";
@@ -21,8 +21,10 @@ const Main = () => {
   const { openModal } = useModals();
 
   const handleClick = (modal, props) => {
-    if (typeof props === "string" && props.startsWith("http")) {
-      window.open(props, "_blank");
+    if (props === undefined) {
+      openModal(modal, { show: true });
+    } else if (typeof props.data === "string" && props.data.startsWith("http")) {
+      window.open(props.data, "_blank");
     } else {
       openModal(modal, { show: true, props });
     }
@@ -39,7 +41,6 @@ const Main = () => {
 
   return (
     <div className="main">
-      <Modals />
       <HeaderSection onClick={handleClick} />
       <StatusSection />
       <ItemSection

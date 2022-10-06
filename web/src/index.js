@@ -5,6 +5,7 @@ import store from "./store/store";
 import { Provider } from "react-redux";
 
 import ModalsProvider from "./providers/ModalsProvider";
+import Modals from "./components/Modals";
 
 import Main from "./pages/main";
 
@@ -18,6 +19,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ModalsProvider>
+        <Modals />
         <Main />
       </ModalsProvider>
     </Provider>
