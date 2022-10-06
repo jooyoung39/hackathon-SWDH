@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import { useAxios } from "../hooks/useAxios";
+import { modals } from "../components/Modals";
+import useModals from "../hooks/useModal";
 
 import Modal from "react-bootstrap/Modal";
-import Card from "react-bootstrap/Card";
 import CloseButton from "react-bootstrap/CloseButton";
-import Collapse from "react-bootstrap/Collapse";
 
-import MedicineCard from "./medicineCard";
+import MedicineCard from "./MedicineCard";
 
 import "../assets/style/modal.css";
 
 const ItemListModal = ({ show, onClose, props }) => {
+  const { openModal } = useModals();
+
   const [isOpen, setIsOpen] = useState(true);
-  const [open, setOpen] = useState(-1);
   const [medicineData, setMedicineData] = useState([]);
 
   useEffect(() => {
@@ -21,22 +22,23 @@ const ItemListModal = ({ show, onClose, props }) => {
     });
   }, []);
 
+  const hideModal = () => {
+    setIsOpen(false);
+    onClose();
+  };
+
+  const ModalBody = (medicine) => {
+    return (
+      <div key={medicine.id}>
+        <MedicineCard medicine={medicine} onClick={() => openModal(modals.medicineModal, { show: true, props: medicine })} />
+      </div>
+    );
+  };
+
   return (
-    <Modal
-      show={isOpen && show}
-      onHide={() => {
-        setIsOpen(false);
-        onClose();
-      }}
-      centered
-    >
+    <Modal show={isOpen && show} onHide={hideModal} centered>
       <Modal.Header style={{ borderBottom: "0" }}>
-        <CloseButton
-          onClick={() => {
-            setIsOpen(false);
-            onClose();
-          }}
-        />
+        <CloseButton onClick={hideModal} />
       </Modal.Header>
       {show && (
         <Modal.Body style={{ marginTop: "-1rem", paddingTop: "1rem" }}>
@@ -45,39 +47,10 @@ const ItemListModal = ({ show, onClose, props }) => {
               (medicine) =>
                 props.type.some((type) => {
                   return type === medicine.type;
-                }) && (
-                  <div key={medicine.id}>
-                    <MedicineCard medicine={medicine} onClick={() => setOpen(medicine.id === open ? -1 : medicine.id)} />
-                    <Collapse in={open === medicine.id}>
-                      <div>
-                        <Card className="card-long">
-                          <Card.Body>
-                            <p>{medicine.name}</p>
-                          </Card.Body>
-                        </Card>
-                      </div>
-                    </Collapse>
-                  </div>
-                )
+                }) && ModalBody(medicine)
             )
           ) : typeof props.type === "string" && props.type.length !== 0 ? (
-            medicineData.map(
-              (medicine) =>
-                medicine.type === props.type && (
-                  <div key={medicine.id}>
-                    <MedicineCard medicine={medicine} onClick={() => setOpen(medicine.id === open ? -1 : medicine.id)} />
-                    <Collapse in={open === medicine.id}>
-                      <div>
-                        <Card className="card-long">
-                          <Card.Body>
-                            <p>{medicine.name}</p>
-                          </Card.Body>
-                        </Card>
-                      </div>
-                    </Collapse>
-                  </div>
-                )
-            )
+            medicineData.map((medicine) => medicine.type === props.type && ModalBody(medicine))
           ) : (
             <div className="h-100 d-flex flex-column justify-content-center">
               <p className="text-center">약 목록이 없습니다.</p>
