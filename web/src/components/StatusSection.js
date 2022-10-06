@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useInterval } from "react-use";
 import dayjs from "dayjs";
-import isBetween from "dayjs/plugin/isBetween";
 import "dayjs/locale/ko";
 
-dayjs.extend(isBetween);
 dayjs.locale("ko");
 
 const HeaderSection = () => {
@@ -13,7 +11,8 @@ const HeaderSection = () => {
   const [realTime, setRealTime] = useState(dayjs());
 
   useEffect(() => {
-    setIsOpen(9 * 60 <= realTime.get("h") * 60 + realTime.get("m") && realTime.get("h") * 60 + realTime.get("m") <= 17 * 60 + 20);
+    setIsAway(0 && true);
+    setIsOpen(9 * 60 <= dayjs().get("h") * 60 + dayjs().get("m") && dayjs().get("h") * 60 + dayjs().get("m") <= 17 * 60 + 20);
   }, []);
 
   useInterval(() => {
@@ -28,7 +27,7 @@ const HeaderSection = () => {
           <div className="card-body d-flex align-items-center">
             <div className="status-data">
               <h3 className="mb-1">교내 보건실</h3>
-              <h6 className="mb-1">학생회관 2층</h6>
+              <h6 className="mb-1">학생회관 2층 212-1호</h6>
               <h6 className="mb-1">운영 시간: 09:00 ~ 17:20</h6>
             </div>
             <div className="status-available" style={{ color: isOpen ? (isAway ? "LightCoral" : "cornflowerblue") : "DarkGray" }}>
