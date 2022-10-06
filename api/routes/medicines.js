@@ -15,8 +15,8 @@ router.post("/", (req, res) => {
   const dosage = req.query.dosage;
   dbModule.open(pool, (con) => {
     con.query(
-      "INSERT INTO medicines (id, name, type, ingredient, effect, dosage) VALUES (?, ?, ?, ?, ?, ?)",
-      [id, name, type, ingredient, effect, dosage],
+      "INSERT INTO medicines (id, name, quantity, type, ingredient, effect, dosage) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [id, name, 0, type, ingredient, effect, dosage],
       function (err, result) {
         if (err) {
           console.log("DB communication failed: ", err);
@@ -53,6 +53,7 @@ router.get("/", (req, res) => {
           medicines: result.map((medicine) => ({
             id: medicine.id,
             name: medicine.name,
+            quantity: medicine.quantity,
             type: medicine.type,
             ingredient: medicine.ingredient,
             effect: medicine.effect,
