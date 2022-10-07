@@ -70,7 +70,6 @@ const LoginModal = (props) => {
                 <Form.Control
                   type="number"
                   pattern="\d*"
-                  maxLength="10"
                   placeholder="학번을 입력해주세요"
                   value={studentNum}
                   onInput={maxLengthCheck}
