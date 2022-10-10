@@ -2,7 +2,7 @@
 const mysql = require('mysql');
 
 //dot-env
-require('dotenv').config({ path: '.env' });
+require('dotenv').config({ path: '/home/node/app/api/.env' });
 
 const connection = {
   init: () => {
