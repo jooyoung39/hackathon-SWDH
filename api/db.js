@@ -1,8 +1,8 @@
 //mysql module
-const mysql = require("mysql");
+const mysql = require('mysql');
 
 //dot-env
-require("dotenv").config();
+require('dotenv').config({ path: '.env' });
 
 const connection = {
   init: () => {
@@ -19,16 +19,16 @@ const connection = {
   open: (pool, callback) => {
     pool.getConnection(function (err, con) {
       if (!err) {
-        console.log("Connected to DB pool");
+        console.log('Connected to DB pool');
         callback(con);
         connection.close(con);
-      } else console.log("DB connection failed: ", err);
+      } else console.log('DB connection failed: ', err);
     });
   },
 
   close: (con) => {
     con.release();
-    console.log("DB pool released");
+    console.log('DB pool released');
   },
 };
 
