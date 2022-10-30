@@ -1,23 +1,24 @@
 //mysql module
 const mysql = require('mysql');
 
-//dot-env
-require('dotenv').config({ path: '/home/node/app/api/.env' });
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  connectionLimit: process.env.DB_LIMIT,
+});
+
+console.log('I: Pool Created');
 
 const connection = {
-  init: () => {
-    return mysql.createPool({
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT,
-      database: process.env.DB_NAME,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASS,
-      connectionLimit: process.env.DB_LIMIT,
-    });
+  getPool: () => {
+    return pool;
   },
 
   open: (pool, callback) => {
-    pool.getConnection(function (err, con) {
+    pool.getConnection((err, con) => {
       if (!err) {
         console.log('Connected to DB pool');
         callback(con);
