@@ -20,20 +20,22 @@ app.use(express.urlencoded({ extended: true }));
 //express-router
 const rootRouter = require('./routes/root_router');
 const userRouter = require('./routes/user_router');
+const medicineRouter = require('./routes/medicine_router');
 
 app.use('/v2', rootRouter);
 app.use('/v2/users', userRouter);
+app.use('/v2/medicines', medicineRouter);
 
 // v1 legacy
-const indexRouter = require('./v1/routes/index');
-const accountRouter = require('./v1/routes/account');
-const symptomsRouter = require('./v1/routes/symptoms');
-const medicinesRouter = require('./v1/routes/medicines');
+const indexRouter1 = require('./v1/routes/index');
+const accountRouter1 = require('./v1/routes/account');
+const symptomsRouter1 = require('./v1/routes/symptoms');
+const medicinesRouter1 = require('./v1/routes/medicines');
 
-app.use('/', indexRouter);
-app.use('/account', accountRouter);
-app.use('/symptoms', symptomsRouter);
-app.use('/medicines', medicinesRouter);
+app.use('/', indexRouter1);
+app.use('/account', accountRouter1);
+app.use('/symptoms', symptomsRouter1);
+app.use('/medicines', medicinesRouter1);
 
 // Create HTTP server
 const server = app.listen(3000, () =>
