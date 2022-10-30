@@ -7,8 +7,8 @@ const {
 } = require('../controllers/medicine_controller');
 
 router.get('/', getMedicine);
-router.get('/:id', getMedicineById);
 router.get('/types', getMedicineTypes);
 router.get('/types/:id', getMedicineTypeById);
+router.get('/:id', getMedicineById);
 
 module.exports = router;
