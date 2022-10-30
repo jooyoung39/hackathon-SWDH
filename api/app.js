@@ -23,18 +23,19 @@ const userRouter = require('./routes/user_router');
 const medicineRouter = require('./routes/medicine_router');
 const symptomsRouter = require('./routes/symptom_router');
 
+app.get('/', (req, res) => {
+  res.redirect('/v2');
+});
 app.use('/v2', rootRouter);
 app.use('/v2/users', userRouter);
 app.use('/v2/medicines', medicineRouter);
 app.use('/v2/symptoms', symptomsRouter);
 
 // v1 legacy
-const indexRouter1 = require('./v1/routes/index');
 const accountRouter1 = require('./v1/routes/account');
 const symptomsRouter1 = require('./v1/routes/symptoms');
 const medicinesRouter1 = require('./v1/routes/medicines');
 
-app.use('/', indexRouter1);
 app.use('/account', accountRouter1);
 app.use('/symptoms', symptomsRouter1);
 app.use('/medicines', medicinesRouter1);

@@ -5,11 +5,11 @@ const pool = dbModule.getPool();
 module.exports = {
   checkStatus: (callback) => {
     dbModule.open(pool, (con) => {
-      con.query('SHOW TABLE STATUS', (error, result) => {
+      con.query('SELECT now()', (error, result) => {
         if (error) {
           callback(error);
         } else {
-          callback(null, result);
+          callback(null, result[0]['now()']);
         }
       });
     });
