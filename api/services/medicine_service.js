@@ -25,4 +25,30 @@ module.exports = {
       });
     });
   },
+  getMedicineTypes: (callback) => {
+    dbModule.open(pool, (con) => {
+      con.query('SELECT * FROM medicine_types', (error, result) => {
+        if (error) {
+          callback(error);
+        } else {
+          callback(null, result);
+        }
+      });
+    });
+  },
+  getMedicineTypeById: (id, callback) => {
+    dbModule.open(pool, (con) => {
+      con.query(
+        'SELECT * FROM medicine_types WHERE id=?',
+        [id],
+        (error, result) => {
+          if (error) {
+            callback(error);
+          } else {
+            callback(null, result);
+          }
+        }
+      );
+    });
+  },
 };
