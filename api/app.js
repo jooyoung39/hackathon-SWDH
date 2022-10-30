@@ -21,10 +21,12 @@ app.use(express.urlencoded({ extended: true }));
 const rootRouter = require('./routes/root_router');
 const userRouter = require('./routes/user_router');
 const medicineRouter = require('./routes/medicine_router');
+const symptomsRouter = require('./routes/symptom_router');
 
 app.use('/v2', rootRouter);
 app.use('/v2/users', userRouter);
 app.use('/v2/medicines', medicineRouter);
+app.use('/v2/symptoms', symptomsRouter);
 
 // v1 legacy
 const indexRouter1 = require('./v1/routes/index');
