@@ -9,6 +9,10 @@ module.exports = {
         if (error) {
           callback(error);
         } else {
+          result.map((res) => {
+            res.type = JSON.parse(res.type);
+          });
+          console.log(result[0].type, typeof result[0].type);
           callback(null, result);
         }
       });
@@ -20,7 +24,8 @@ module.exports = {
         if (error) {
           callback(error);
         } else {
-          callback(null, result);
+          result[0].type = JSON.parse(result[0].type);
+          callback(null, result[0]);
         }
       });
     });
