@@ -1,19 +1,19 @@
 //express module
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 //db module
-const dbModule = require("../db");
-const pool = dbModule.init();
+const dbModule = require('../db');
+const pool = dbModule.getPool();
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   dbModule.open(pool, (con) => {
-    con.query("SELECT * FROM medicines", function (err, result) {
+    con.query('SELECT * FROM medicines', function (err, result) {
       if (err) {
-        console.log("DB communication failed: ", err);
-        res.status(500).json({ message: "DB communication failed" });
+        console.log('DB communication failed: ', err);
+        res.status(500).json({ message: 'DB communication failed' });
       } else if (!result.length) {
-        res.status(204).json({ message: "No medicine found" });
+        res.status(204).json({ message: 'No medicine found' });
       } else {
         res.json({
           ok: true,
@@ -33,7 +33,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   const id = req.query.id;
   const name = req.query.name;
   const icon = req.query.icon;
@@ -44,12 +44,12 @@ router.post("/", (req, res) => {
 
   dbModule.open(pool, (con) => {
     con.query(
-      "INSERT INTO medicines (id, name, quantity, icon, type, ingredient, effect, dosage) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      'INSERT INTO medicines (id, name, quantity, icon, type, ingredient, effect, dosage) VALUES (?, ?, ?, ?, ?, ?, ?)',
       [id, name, 0, icon, type, ingredient, effect, dosage],
       function (err, result) {
         if (err) {
-          console.log("DB communication failed: ", err);
-          res.status(500).json({ message: "DB communication failed" });
+          console.log('DB communication failed: ', err);
+          res.status(500).json({ message: 'DB communication failed' });
         } else {
           res.json({
             ok: true,
@@ -69,36 +69,40 @@ router.post("/", (req, res) => {
   });
 });
 
-router.put("/", (req, res) => {
+router.put('/', (req, res) => {
   const id = req.query.id;
   const quantity = req.query.quantity;
 
   dbModule.open(pool, (con) => {
-    con.query("UPDATE medicines SET quantity=? WHERE id=?", [quantity, id], (err, result) => {
-      if (err) {
-        console.log("DB communication failed: ", err);
-        res.status(500).json({ message: "DB communication failed" });
-      } else {
-        res.json({
-          ok: true,
-          medicine: {
-            id: id,
-            quantity: quantity,
-          },
-        });
+    con.query(
+      'UPDATE medicines SET quantity=? WHERE id=?',
+      [quantity, id],
+      (err, result) => {
+        if (err) {
+          console.log('DB communication failed: ', err);
+          res.status(500).json({ message: 'DB communication failed' });
+        } else {
+          res.json({
+            ok: true,
+            medicine: {
+              id: id,
+              quantity: quantity,
+            },
+          });
+        }
       }
-    });
+    );
   });
 });
 
-router.get("/types", (req, res) => {
+router.get('/types', (req, res) => {
   dbModule.open(pool, (con) => {
-    con.query("SELECT * FROM medicine_types", function (err, result) {
+    con.query('SELECT * FROM medicine_types', function (err, result) {
       if (err) {
-        console.log("DB communication failed: ", err);
-        res.status(500).json({ message: "DB communication failed" });
+        console.log('DB communication failed: ', err);
+        res.status(500).json({ message: 'DB communication failed' });
       } else if (!result.length) {
-        res.status(204).json({ message: "No type found" });
+        res.status(204).json({ message: 'No type found' });
       } else {
         res.json({
           ok: true,

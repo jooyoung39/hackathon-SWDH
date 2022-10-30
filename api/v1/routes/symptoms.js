@@ -1,19 +1,19 @@
 //express module
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 //db module
-const dbModule = require("../db");
-const pool = dbModule.init();
+const dbModule = require('../db');
+const pool = dbModule.getPool();
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   dbModule.open(pool, (con) => {
-    con.query("SELECT * FROM symptoms", function (err, result) {
+    con.query('SELECT * FROM symptoms', function (err, result) {
       if (err) {
-        console.log("DB communication failed: ", err);
-        res.status(500).json({ message: "DB communication failed" });
+        console.log('DB communication failed: ', err);
+        res.status(500).json({ message: 'DB communication failed' });
       } else if (!result.length) {
-        res.status(204).json({ message: "No symptom found" });
+        res.status(204).json({ message: 'No symptom found' });
       } else {
         res.json({
           ok: true,
