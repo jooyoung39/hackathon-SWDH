@@ -6,9 +6,9 @@ const {
   getMedicineTypeById,
 } = require('../controllers/medicine_controller');
 
-router.get('/', getMedicine);
 router.get('/types', getMedicineTypes);
 router.get('/types/:id', getMedicineTypeById);
+router.get('/', getMedicine);
 router.get('/:id', getMedicineById);
 
 module.exports = router;
