@@ -16,6 +16,27 @@ const hasher = pbkdf2Password({
 });
 
 module.exports = {
+  getUser: (req, res) => {
+    getUserById(req.query.id, (error, result) => {
+      if (error) {
+        console.log(error);
+        return res.status(500).json({
+          code: 500,
+          error: 'DB communication failed',
+        });
+      } else {
+        console.log(result);
+        const censoredUserData = {
+          id: result.id,
+          name: result.name,
+        };
+        return res.status(200).json({
+          code: 200,
+          data: censoredUserData,
+        });
+      }
+    });
+  },
   createUser: (req, res) => {
     const query = req.query;
 
@@ -143,13 +164,11 @@ module.exports = {
           error: 'User not found by ID or Password',
         });
       } else {
-        const userData = result[0];
-
         hasher(
-          { password: query.password, salt: userData.salt },
+          { password: query.password, salt: result.salt },
           (err, pass, salt, hash) => {
-            if (hash === userData.hash) {
-              const accessToken = sign(userData);
+            if (hash === result.hash) {
+              const accessToken = sign(result);
               const refreshToken = refresh();
 
               setRefreshToken(query.id, refreshToken, (error) => {
