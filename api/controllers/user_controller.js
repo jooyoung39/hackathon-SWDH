@@ -25,7 +25,6 @@ module.exports = {
           error: 'DB communication failed',
         });
       } else {
-        console.log(result);
         const censoredUserData = {
           id: result.id,
           name: result.name,
@@ -158,7 +157,7 @@ module.exports = {
         });
       }
 
-      if (!result.length) {
+      if (typeof result === 'undefined') {
         return res.status(404).json({
           code: 404,
           error: 'User not found by ID or Password',
