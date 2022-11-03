@@ -29,11 +29,11 @@ module.exports = {
       });
     });
   },
-  getReservationById: (id, callback) => {
+  getReservationById: (reservation_id, callback) => {
     dbModule.open(pool, (con) => {
       con.query(
         'SELECT * FROM reservations WHERE reservation_id=?',
-        [id],
+        [reservation_id],
         (error, result) => {
           if (error) {
             callback(error);
@@ -44,12 +44,11 @@ module.exports = {
       );
     });
   },
-  getReservationsByUserId: (reservation_id, callback) => {
-    console.log(reservation_id);
+  getReservationsByUserId: (user_id, callback) => {
     dbModule.open(pool, (con) => {
       con.query(
-        'SELECT * FROM reservations WHERE reservation_id=?',
-        [reservation_id],
+        'SELECT * FROM reservations WHERE user_id=?',
+        [user_id],
         (error, result) => {
           if (error) {
             callback(error);
