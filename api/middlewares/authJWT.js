@@ -5,7 +5,7 @@ const authJWT = (req, res, next) => {
     const token = req.headers.token;
     const result = verify(token);
     if (result.ok) {
-      req.query.id = result.id;
+      req.query.user_id = result.user_id;
       next();
     } else {
       res.status(401).json({

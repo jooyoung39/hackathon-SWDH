@@ -17,7 +17,7 @@ const hasher = pbkdf2Password({
 
 module.exports = {
   getUser: (req, res) => {
-    getUserById(req.query.id, (error, result) => {
+    getUserById(req.query.user_id, (error, result) => {
       if (error) {
         console.log(error);
         return res.status(500).json({
@@ -139,11 +139,6 @@ module.exports = {
         });
       }
     });
-  },
-  tokenTest: (req, res) => {
-    const query = req.query;
-    if (!query.id) console.log('token id', query.id);
-    return res.status(200).json({ message: 'ok', id: query.id });
   },
   login: (req, res) => {
     const query = req.query;
