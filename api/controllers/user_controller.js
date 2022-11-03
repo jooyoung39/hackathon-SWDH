@@ -84,14 +84,14 @@ module.exports = {
     const authResult = verify(accessToken);
     const decoded = jwt.decode(accessToken);
 
-    if (!decoded.id) {
+    if (!decoded.user_id) {
       return res.status(401).json({
         code: 401,
         message: 'No authorized',
       });
     }
 
-    verifyRefresh(decoded.id, refreshToken, (refreshResult) => {
+    verifyRefresh(decoded.user_id, refreshToken, (refreshResult) => {
       console.log(refreshResult);
 
       if (authResult.ok === false && authResult.message === 'jwt expired') {
@@ -101,10 +101,10 @@ module.exports = {
             message: 'No authorized',
           });
         } else {
-          const newAccessToken = sign({ id: decoded.id });
+          const newAccessToken = sign({ id: decoded.user_id });
           const newRefreshToken = refresh();
 
-          setRefreshToken(decoded.id, newRefreshToken, (error) => {
+          setRefreshToken(decoded.user_id, newRefreshToken, (error) => {
             if (error) {
               console.log(error);
               return res.status(500).json({
