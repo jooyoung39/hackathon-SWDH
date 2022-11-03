@@ -8,7 +8,7 @@ const pool = dbModule.getPool();
 module.exports = {
   sign: (user) => {
     const payload = {
-      id: user.id,
+      user_id: user.id,
     };
 
     return jwt.sign(payload, SECRET, {
@@ -21,7 +21,7 @@ module.exports = {
       const decoded = jwt.verify(token, SECRET);
       return {
         ok: true,
-        id: decoded.id,
+        user_id: decoded.user_id,
       };
     } catch (error) {
       return {
