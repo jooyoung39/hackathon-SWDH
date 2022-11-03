@@ -23,6 +23,7 @@ const userRouter = require('./routes/user_router');
 const medicineRouter = require('./routes/medicine_router');
 const symptomRouter = require('./routes/symptom_router');
 const walletRouter = require('./routes/wallet_router');
+const reservationRouter = require('./routes/reservation_router');
 
 app.get('/', (req, res) => {
   res.redirect('/v2');
@@ -32,6 +33,7 @@ app.use('/v2/users', userRouter);
 app.use('/v2/medicines', medicineRouter);
 app.use('/v2/symptoms', symptomRouter);
 app.use('/v2/wallets', walletRouter);
+app.use('/v2/reservations', reservationRouter);
 
 // v1 legacy
 const accountRouter1 = require('./v1/routes/account');
