@@ -62,6 +62,7 @@ io.on('connection', (socket) => {
 
   socket.on('message', (message) => {
     console.log('I: Socket Message', message);
+    io.emit('new_message', 1);
   });
 
   socket.on('disconnect', (reason) => {

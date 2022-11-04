@@ -1,0 +1,70 @@
+@import 'colors';
+@import 'variables';
+
+.chatbox {
+  width: 80%;
+  height: 80%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  //
+  position: fixed;
+  right: 1rem;
+  bottom: 6rem;
+  //
+  animation: fadeout 0.25s;
+  transform: translateY(110%);
+  transition: all 0.25s ease-in;
+  //
+  background-color: $card-color-bg;
+  border-radius: $card-border-radius !important;
+  box-shadow: 0.5rem 0.5rem 1rem #a7a7a7 !important;
+}
+
+.active {
+  background-color: $card-color-bg;
+  animation: fadein 0.25s;
+  transform: translateY(0%);
+  transition: all 0.25s ease-in;
+}
+
+.header {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 1rem;
+}
+
+.chats {
+  width: 100%;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+  overflow-y: auto;
+}
+
+.chats::-webkit-scrollbar {
+  display: none;
+}
+
+.userinput {
+  width: 100%;
+}
+
+@keyframes fadein {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
