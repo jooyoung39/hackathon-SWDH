@@ -68,7 +68,11 @@ io.on('connection', (socket) => {
       reciver_id: message.reciver_id,
       content: message.content,
     };
-    createChat(chat);
+    createChat(chat, (error) => {
+      if (error) {
+        console.log(error);
+      }
+    });
     io.emit('new_message', 1);
   });
 
