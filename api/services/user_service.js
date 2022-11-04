@@ -6,7 +6,7 @@ module.exports = {
   createUser: (user, callback) => {
     dbModule.open(pool, (con) => {
       con.query(
-        'INSERT INTO users (id, name, hash, salt) VALUES (?, ?, ?, ?)',
+        'INSERT INTO users (user_id, name, hash, salt) VALUES (?, ?, ?, ?)',
         [user.id, user.name, user.hash, user.salt],
         (error) => {
           if (error) {
@@ -18,15 +18,19 @@ module.exports = {
       );
     });
   },
-  getUserById: (id, callback) => {
+  getUserById: (user_id, callback) => {
     dbModule.open(pool, (con) => {
-      con.query('SELECT * FROM users WHERE id=?', [id], (error, result) => {
-        if (error) {
-          callback(error);
-        } else {
-          callback(null, result[0]);
+      con.query(
+        'SELECT * FROM users WHERE user_id=?',
+        [user_id],
+        (error, result) => {
+          if (error) {
+            callback(error);
+          } else {
+            callback(null, result[0]);
+          }
         }
-      });
+      );
     });
   },
 };

@@ -8,7 +8,7 @@ const pool = dbModule.getPool();
 module.exports = {
   sign: (user) => {
     const payload = {
-      user_id: user.id,
+      user_id: user.user_id,
     };
 
     return jwt.sign(payload, SECRET, {
@@ -51,9 +51,9 @@ module.exports = {
       );
     });
   },
-  dropRefreshToken: (id, callback) => {
+  dropRefreshToken: (user_id, callback) => {
     dbModule.open(pool, (con) => {
-      con.query('DELETE FROM tokens WHERE id=?', [id], (error, result) => {
+      con.query('DELETE FROM tokens WHERE user_id=?', [user_id], (error) => {
         if (error) {
           callback(error);
         } else {
@@ -62,22 +62,26 @@ module.exports = {
       });
     });
   },
-  verifyRefresh: (id, token, callback) => {
+  verifyRefresh: (user_id, token, callback) => {
     dbModule.open(pool, (con) => {
-      con.query('SELECT * FROM tokens WHERE id=?', [id], (error, result) => {
-        if (error) return callback(false);
+      con.query(
+        'SELECT * FROM tokens WHERE user_id=?',
+        [user_id],
+        (error, result) => {
+          if (error) return callback(false);
 
-        if (token === result[0].refresh_token) {
-          try {
-            jwt.verify(token, SECRET);
-            return callback(true);
-          } catch {
+          if (token === result[0].refresh_token) {
+            try {
+              jwt.verify(token, SECRET);
+              return callback(true);
+            } catch {
+              return callback(false);
+            }
+          } else {
             return callback(false);
           }
-        } else {
-          return callback(false);
         }
-      });
+      );
     });
   },
 };

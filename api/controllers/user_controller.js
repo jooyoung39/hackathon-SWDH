@@ -26,7 +26,7 @@ module.exports = {
         });
       } else {
         const censoredUserData = {
-          id: result.id,
+          user_id: result.user_id,
           name: result.name,
         };
         return res.status(200).json({
@@ -41,7 +41,7 @@ module.exports = {
 
     hasher({ password: query.password }, (err, pass, salt, hash) => {
       const user = {
-        id: query.id,
+        user_id: query.user_id,
         name: query.name,
         hash,
         salt,
@@ -101,7 +101,7 @@ module.exports = {
             message: 'No authorized',
           });
         } else {
-          const newAccessToken = sign({ id: decoded.user_id });
+          const newAccessToken = sign({ user_id: decoded.user_id });
           const newRefreshToken = refresh();
 
           setRefreshToken(decoded.user_id, newRefreshToken, (error) => {
@@ -123,7 +123,7 @@ module.exports = {
           });
         }
       } else {
-        dropRefreshToken(authResult.id, (error) => {
+        dropRefreshToken(authResult.user_id, (error) => {
           if (error) {
             console.log(error);
             return res.status(500).json({
@@ -143,7 +143,7 @@ module.exports = {
   login: (req, res) => {
     const query = req.query;
 
-    getUserById(query.id, (error, result) => {
+    getUserById(query.user_id, (error, result) => {
       if (error) {
         console.log(error);
         return res.status(500).json({
@@ -165,7 +165,7 @@ module.exports = {
               const accessToken = sign(result);
               const refreshToken = refresh();
 
-              setRefreshToken(query.id, refreshToken, (error) => {
+              setRefreshToken(query.user_id, refreshToken, (error) => {
                 if (error) {
                   console.log(error);
                   return res.status(500).json({
