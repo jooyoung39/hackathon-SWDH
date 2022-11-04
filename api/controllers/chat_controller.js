@@ -3,7 +3,7 @@ const { createChat, getChatById } = require('../services/chat_service');
 module.exports = {
   getChatById: (req, res) => {
     const query = req.query;
-
+    console.log(query);
     getChatById(query.id, (error, result) => {
       if (error) {
         console.log(error);

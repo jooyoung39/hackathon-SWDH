@@ -109,4 +109,5 @@ export const {
   useGetMedicinesMutation,
   useGetMedicineTypesMutation,
   useGetMyWalletMutation,
+  useGetChatMutation,
 } = careusApi;

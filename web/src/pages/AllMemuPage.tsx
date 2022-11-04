@@ -1,13 +1,23 @@
 import { useAppSelector } from '../hooks/useStore';
+import LoginModal from '../components/LoginModal';
+import { useModalsDispatch } from '../hooks/useModal';
 import styles from '../assets/style/page_all_menu.module.scss';
 
 const AllMenu = () => {
+  const ModalsDispatch = useModalsDispatch();
   const userData = useAppSelector((state) => state.user);
+
+  const onClickProfile = () => {
+    if (!userData.name.length) {
+      ModalsDispatch({ type: 'OPEN', Component: LoginModal, data: {} });
+    }
+  };
+
   return (
     <div className={styles.page}>
       <h1 className={styles.title}>전체</h1>
       <section className={styles.profile}>
-        <button type="button">
+        <button type="button" onClick={onClickProfile}>
           <h5>{userData.name.length ? userData.name : '로그인'}</h5>
         </button>
       </section>

@@ -4,12 +4,17 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 //
+import ChatBubble from './ChatBubble';
+//
+import { useGetChatMutation } from '../services/careusAPI';
+//
 import { useAppSelector } from '../hooks/useStore';
 //
 import { socket, SocketContext } from '../services/socket';
 //
+import type { ChatData } from '../types';
+//
 import styles from '../assets/style/chat.module.scss';
-import ChatBubble from './ChatBubble';
 
 type Props = {
   isOpen: boolean;
@@ -18,12 +23,23 @@ type Props = {
 const ChatOverlay = ({ isOpen, setIsOpen }: Props) => {
   const scrollRef = useRef<null | HTMLDivElement>(null);
   const [userChat, setUserChat] = useState<string>('');
+  const [chats, setChats] = useState<ChatData[]>([]);
   const userData = useAppSelector((state) => state.user);
+  const [getChat] = useGetChatMutation();
 
   const scrollToBottom = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
+  };
+
+  const fetchChats = () => {
+    getChat(userData.user_id)
+      .unwrap()
+      .then((chatData) => {
+        setChats(chatData);
+        console.log(chats);
+      });
   };
 
   useEffect(() => {
@@ -32,7 +48,7 @@ const ChatOverlay = ({ isOpen, setIsOpen }: Props) => {
 
   useEffect(() => {
     socket.on('new_message', () => {
-      console.log('nm');
+      fetchChats();
     });
   }, [socket]);
 
