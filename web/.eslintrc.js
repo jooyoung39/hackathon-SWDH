@@ -60,5 +60,6 @@ module.exports = {
     'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.tsx'] }],
     'no-underscore-dangle': 'off',
     'no-nested-ternary': 'off',
+    'react-hooks/exhaustive-deps': 'off',
   },
 };

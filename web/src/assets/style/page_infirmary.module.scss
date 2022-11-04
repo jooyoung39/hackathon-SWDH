@@ -1,0 +1,29 @@
+.page {
+  height: calc(100% - 4rem);
+  padding-top: 1rem;
+  overflow-y: auto;
+}
+
+.title {
+  margin: 0 1rem 1rem;
+}
+
+.chatbutton {
+  position: fixed;
+  right: 1rem;
+  bottom: 6rem;
+  //
+  width: 4rem;
+  height: 4rem;
+  //
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //
+  border: none;
+  border-radius: 50%;
+  background-color: royalblue;
+  //
+  color: white;
+  font-size: 1.5rem;
+}

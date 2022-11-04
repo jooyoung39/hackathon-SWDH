@@ -1,0 +1,21 @@
+.dialog {
+  height: 100%;
+}
+
+.modal-dialog,
+.modal-content {
+  /* 80% of window height */
+  height: 80%;
+}
+
+.modal-content {
+  background-color: $card-color-bg !important;
+}
+
+.modal-body {
+  /* 100% = dialog height, 120px = header + footer */
+  max-height: 100%;
+  overflow-y: auto;
+  margin-top: -1rem;
+  padding-top: 1rem;
+}

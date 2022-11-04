@@ -1,0 +1,89 @@
+$shadow-neumorphism: 0.5rem 0.5rem 1rem #d1d1d1, -0.5rem -0.5rem 1rem #d1d1d1;
+
+.menu-bar {
+  width: 100%;
+  height: 5rem;
+  padding: 0 1rem 1.25rem 1rem;
+  position: absolute;
+  bottom: 0;
+  border-radius: 25px 25px 0 0;
+  background-color: #f3f3f3;
+  box-shadow: $shadow-neumorphism;
+}
+
+.menu-tabs {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  * {
+    z-index: 2;
+  }
+
+  input[type='radio'] {
+    display: none;
+    &:checked {
+      & + label {
+        color: cornflowerblue;
+        transition: all 0.15s ease-in;
+        i {
+          margin-bottom: 2rem;
+          font-size: 2rem;
+          transition: all 0.15s ease-in;
+        }
+        p {
+          font-size: 0;
+          color: transparent;
+          transition: all 0.15s ease-in;
+        }
+      }
+      @for $i from 1 through 10 {
+        &:nth-of-type(#{$i}) ~ .menu-slider {
+          z-index: 1;
+          width: calc(100% - 2rem);
+          .slider {
+            &-spacer {
+              width: calc(#{$i - 1} * (50% - 2rem));
+              transform: translateX(calc(100% * #{$i - 1}));
+              transition: all 0.15s ease-in;
+            }
+            &-indicator {
+              width: 4rem;
+              height: 4rem;
+              border-radius: 2rem;
+              background-color: #f3f3f3;
+              box-shadow: $shadow-neumorphism;
+              transform: translateY(-1rem);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .menu-slider {
+    position: absolute;
+    display: flex;
+  }
+}
+
+.menu-tab {
+  cursor: pointer;
+  display: flex;
+  width: 4rem;
+  padding: 0 1rem;
+  font-size: 0.75rem;
+  color: dimgray;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  i {
+    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}

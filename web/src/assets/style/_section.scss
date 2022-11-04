@@ -1,0 +1,31 @@
+.section {
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
+  margin-bottom: 1rem;
+  //
+  background: #f3f3f3;
+  border-radius: 25px;
+  padding: 1rem;
+  //
+  .section-header {
+    display: flex;
+    margin-bottom: 1.5rem;
+    h3 {
+      flex-grow: 1;
+      margin: 0;
+    }
+    a {
+      color: $color-secondary;
+      font-weight: 500;
+    }
+  }
+}
+
+/*
+.item-section {
+  @extend .section;
+  background: #f3f3f3;
+  border-radius: 25px;
+  padding: 1rem;
+}
+*/

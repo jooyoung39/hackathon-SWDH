@@ -1,0 +1,28 @@
+.section {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+  h1 {
+    color: darkgray;
+    margin-bottom: 0;
+    :global i.fa-duotone {
+      margin-right: 1rem;
+    }
+  }
+  button {
+    background-color: transparent;
+    border: 0;
+    font-size: 1.5rem;
+    padding: 0;
+    &:first-of-type {
+      margin-left: auto;
+    }
+    &:not(:first-of-type) {
+      margin-left: 1.5rem;
+    }
+  }
+}

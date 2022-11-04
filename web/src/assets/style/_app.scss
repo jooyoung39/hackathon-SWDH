@@ -1,0 +1,51 @@
+@include font-face('Pretendard', '../font/Pretendard-Regular', 400);
+@include font-face('Pretendard', '../font/Pretendard-Medium', 500);
+@include font-face('Pretendard', '../font/Pretendard-SemiBold', 600);
+@include font-face('Pretendard', '../font/Pretendard-Bold', 700);
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+#root {
+  height: 100%;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+html,
+body {
+  height: 100%;
+  max-width: 100%;
+  width: 100%;
+  background-color: #e6e6e6 !important;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@for $index from 1 through 6 {
+  h#{$index},
+  .h#{$index} {
+    font-weight: 600 !important;
+  }
+}
+
+.main {
+  height: calc(100% - 4rem);
+  padding-top: 1rem;
+  overflow-y: auto;
+}

@@ -1,0 +1,11 @@
+.modal {
+  :global .modal-dialog,
+  :global .modal-content {
+    height: fit-content;
+  }
+  :global .modal-body {
+    padding: 1rem;
+    margin: 0;
+    overflow-y: hidden;
+  }
+}

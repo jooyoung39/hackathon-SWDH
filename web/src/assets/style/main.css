@@ -1,21 +1,3 @@
-html,
-body {
-  height: 100%;
-  max-width: 100%;
-  width: 100%;
-  background-color: #e6e6e6 !important;
-  overflow-x: hidden;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.main {
-  height: calc(100%);
-  padding-top: 1rem;
-  overflow-y: auto;
-}
-
 .warp-horizontal {
   overflow: auto;
   white-space: nowrap;
@@ -24,6 +6,7 @@ body {
 
 .wrap-horizontal::-webkit-scrollbar {
   display: none;
+  appearance: none;
   -webkit-appearance: none;
 }
 
@@ -153,6 +136,7 @@ body {
 }
 
 .card-sm p {
+  font-weight: 500 !important;
   text-align: center;
 }
 /** Card MD **/
@@ -165,7 +149,7 @@ body {
 }
 
 .card-md p {
-  font-family: "Pretendard-SemiBold";
+  font-weight: 500 !important;
   text-align: left;
 }
 
@@ -187,7 +171,7 @@ body {
 }
 
 .card-lg p {
-  font-family: "Pretendard-SemiBold";
+  font-weight: 500 !important;
   font-size: 1.25rem;
   text-align: right;
 }

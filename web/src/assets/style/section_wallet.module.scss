@@ -1,0 +1,77 @@
+@import './colors';
+@import './variables.scss';
+
+.section {
+  width: calc(100% - 2rem);
+  height: 17rem;
+  margin: 0 1rem 1rem;
+  //
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+
+.grid-item {
+  background: #f3f3f3;
+  box-shadow: 0.5rem 0.5rem 1rem #e9e9e9, -0.5rem -0.5rem 1rem #dfdfdf;
+  border-radius: 25px;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  p {
+    font-weight: 500;
+    margin: 0;
+  }
+
+  i {
+    color: LightGray;
+    align-self: end;
+  }
+}
+
+.balance {
+  @extend .grid-item;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+
+  color: white;
+  background: RoyalBlue;
+
+  p:first-child {
+    font-size: 1.5rem;
+  }
+
+  i {
+    color: #a7b9f1;
+    font-size: 4rem;
+  }
+}
+
+.pay {
+  @extend .grid-item;
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  i {
+    font-size: 1.5rem;
+  }
+}
+
+.charge {
+  @extend .grid-item;
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  i {
+    font-size: 1.5rem;
+  }
+}

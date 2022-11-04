@@ -1,0 +1,119 @@
+$card-border-radius: 25px;
+$card-box-shadow-soft: 0.5rem 0.5rem 1rem #e9e9e9, -0.5rem -0.5rem 1rem #fdfdfd;
+$card-color: rgb(33, 37, 41);
+$card-color-bg: rgb(243, 243, 243);
+$card-spacer-x: 1rem;
+$card-spacer-y: 1rem;
+
+.card {
+  background-clip: border-box;
+  background-color: $card-color-bg;
+  border: none;
+  border-radius: $card-border-radius;
+  box-shadow: $card-box-shadow-soft;
+  height: 100%;
+  position: relative;
+  padding: 0;
+
+  &-sm {
+    @extend .card;
+    display: inline-block;
+    margin-right: 1rem;
+    width: 5.5rem;
+    .card-body {
+      @extend .card-body;
+      flex-direction: column;
+      i {
+        font-size: 1.5rem;
+      }
+      p {
+        font-weight: 500;
+      }
+    }
+  }
+
+  &-md {
+    @extend .card;
+    display: inline-block;
+    margin-right: 1rem;
+    width: 7rem;
+    .card-body {
+      @extend .card-body;
+      flex-direction: column-reverse;
+      i {
+        align-self: flex-end;
+        font-size: 1.75rem;
+      }
+      p {
+        align-self: flex-start;
+        font-weight: 600;
+        white-space: normal;
+        word-break: keep-all;
+      }
+    }
+  }
+
+  &-lg {
+    @extend .card;
+    height: 9rem;
+    width: 100%;
+    .card-body {
+      @extend .card-body;
+      flex-direction: column;
+      i {
+        align-self: flex-start;
+        font-size: 2.5rem;
+      }
+      p {
+        align-self: flex-end;
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &-status {
+    @extend .card;
+    width: 100%;
+    box-shadow: none;
+    .card-body {
+      @extend .card-body;
+      .status {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        &-data {
+          @extend .status;
+          flex-grow: 1;
+        }
+        &-available {
+          @extend .status;
+          text-align: center;
+          vertical-align: bottom;
+          i {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            margin-top: auto;
+          }
+          h4 {
+            margin: 0;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
+
+.card-body {
+  align-items: center;
+  color: $card-color;
+  display: flex;
+  flex: 1 1 auto;
+  height: 100%;
+  justify-content: space-between;
+  padding: $card-spacer-y $card-spacer-x;
+  p {
+    margin: 0;
+  }
+}
