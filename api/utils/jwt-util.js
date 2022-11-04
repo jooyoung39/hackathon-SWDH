@@ -39,7 +39,7 @@ module.exports = {
   setRefreshToken: (user_id, refreshToken, callback) => {
     dbModule.open(pool, (con) => {
       con.query(
-        'INSERT INTO tokens (user_id, refresh_token) VALUES (?, ?) ON DUPLICATE KEY UPDATE id=?, refresh_token=?',
+        'INSERT INTO tokens (user_id, refresh_token) VALUES (?, ?) ON DUPLICATE KEY UPDATE user_id=?, refresh_token=?',
         [user_id, refreshToken, user_id, refreshToken],
         (error) => {
           if (error) {
