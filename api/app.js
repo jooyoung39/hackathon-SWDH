@@ -50,6 +50,7 @@ const server = app.listen(3000, () =>
 );
 
 // Create Socket.io
+const { createChat, getChatById } = require('./services/chat_service');
 
 const io = new Server(server, {
   cors: {
@@ -62,6 +63,12 @@ io.on('connection', (socket) => {
 
   socket.on('message', (message) => {
     console.log('I: Socket Message', message);
+    const chat = {
+      sender_id: message.sender_id,
+      reciver_id: message.reciver_id,
+      content: message.content,
+    };
+    createChat(chat);
     io.emit('new_message', 1);
   });
 

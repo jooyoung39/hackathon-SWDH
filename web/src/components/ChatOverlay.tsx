@@ -46,7 +46,8 @@ const ChatOverlay = ({ isOpen, setIsOpen }: Props) => {
     if (userChat.length) {
       socket.emit('message', {
         sender_id: userData.user_id,
-        message: userChat,
+        reciver_id: '2021245113',
+        content: userChat,
       });
       setUserChat('');
       scrollToBottom();
