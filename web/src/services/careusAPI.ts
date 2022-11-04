@@ -14,6 +14,8 @@ import type {
   MedicineTypeResponse,
   WalletData,
   WalletResponse,
+  ChatData,
+  ChatResponse,
 } from '../types';
 
 export const careusApi = createApi({
@@ -87,6 +89,14 @@ export const careusApi = createApi({
       }),
       transformResponse: (response: WalletResponse): WalletData =>
         response.data,
+    }),
+    getChat: builder.mutation<ChatData[], string>({
+      query: (id) => ({
+        url: 'chats',
+        method: 'GET',
+        params: { id },
+      }),
+      transformResponse: (response: ChatResponse): ChatData[] => response.data,
     }),
   }),
 });

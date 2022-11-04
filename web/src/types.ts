@@ -95,3 +95,16 @@ export type WalletResponse = {
   code: number;
   data: WalletData;
 };
+
+export type ChatData = {
+  chat_id: number;
+  sender_id: string;
+  reciver_id: string;
+  chat_date: Date;
+  content: string;
+};
+
+export type ChatResponse = {
+  code: number;
+  data: ChatData[];
+};
