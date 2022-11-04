@@ -7,7 +7,7 @@ module.exports = {
     dbModule.open(pool, (con) => {
       con.query(
         'INSERT INTO users (user_id, name, hash, salt) VALUES (?, ?, ?, ?)',
-        [user.id, user.name, user.hash, user.salt],
+        [user.user_id, user.name, user.hash, user.salt],
         (error) => {
           if (error) {
             callback(error);
